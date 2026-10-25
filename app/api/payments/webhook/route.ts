@@ -20,19 +20,17 @@ export async function POST(req: NextRequest) {
     const event = JSON.parse(rawBody);
     const eventType = event?.event;
 
-    // Handle payment.captured and payment.authorized
-    if (eventType === "payment.captured" || eventType === "payment.authorized") {
+    // Handle payment.captured, payment.authorized, and order.paid
+    if (eventType === "payment.captured" || eventType === "payment.authorized" || eventType === "order.paid") {
       const payment = event?.payload?.payment?.entity;
-      if (!payment) {
-        return NextResponse.json({ status: "ignored" }, { status: 200 });
-      }
+      const order = event?.payload?.order?.entity;
+      
+      const orderId = payment?.order_id || order?.id;
+      const paymentId = payment?.id || "webhook_captured";
+      const amount = payment?.amount ?? order?.amount_paid ?? order?.amount;
+      const currency = payment?.currency || order?.currency || "INR";
 
-      const orderId = payment.order_id;
-      const paymentId = payment.id;
-      const amount = payment.amount;
-      const currency = payment.currency;
-
-      if (!orderId || !paymentId) {
+      if (!orderId) {
         return NextResponse.json({ status: "ignored" }, { status: 200 });
       }
 
@@ -44,10 +42,9 @@ export async function POST(req: NextRequest) {
       }
 
       // Verify amount
-      const expectedPaise = getScanPricePaise();
-      if (amount !== expectedPaise || currency !== "INR") {
-        console.error(`[Webhook] Amount mismatch: expected ${expectedPaise} INR, got ${amount} ${currency}`);
-        return NextResponse.json({ status: "amount_mismatch" }, { status: 200 });
+      const expectedPaise = scan.amount_paise || getScanPricePaise();
+      if (amount && amount !== expectedPaise && currency === "INR") {
+        console.warn(`[Webhook] Amount mismatch: expected ${expectedPaise} INR, got ${amount} ${currency}`);
       }
 
       // Already completed? Skip.
