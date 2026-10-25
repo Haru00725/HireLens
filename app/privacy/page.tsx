@@ -149,13 +149,16 @@ export default function PrivacyPage() {
                 <h2 className="text-xl font-semibold">6. Instant Deletion Requests</h2>
               </div>
               <p className="text-muted">
-                If you wish to delete your scan record and generated report before the 7-day automatic expiry window, you can send an email with your Scan ID to:
+                If you have any queries or wish to delete your scan record and generated report before the 7-day automatic expiry window, you can send an email with your Scan ID to:
               </p>
-              <p className="font-mono text-sm font-semibold text-ink">
-                privacy@hirelens.in
-              </p>
+              <a
+                href="mailto:hello@delusive.studio"
+                className="font-mono text-sm font-semibold text-ink underline underline-offset-4"
+              >
+                hello@delusive.studio
+              </a>
               <p className="text-xs text-muted">
-                Requests are processed within 24 hours. Once deleted, the scan ID cannot be restored.
+                Queries and requests are processed within 24 hours.
               </p>
             </section>
           </div>

@@ -1,4 +1,5 @@
 # HireLens — AI Resume & Job Description Matching SaaS
+> **A Delusive Product** • Queries & Support: [hello@delusive.studio](mailto:hello@delusive.studio)
 
 HireLens is an objective, privacy-first AI matching platform and ATS resume builder. It evaluates how well a candidate's resume satisfies a target job description, provides a calibrated match score (0–100), offers a free ATS resume builder, and features a complete AI optimization bundle with an included re-scan.
 
