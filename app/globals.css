@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --grid: rgba(255,255,255,0.09); }
+html { background: #F7F7F0; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { background: #F7F7F0; color: #111318; font-family: var(--font-dm), system-ui, sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 3px solid #C8F169; outline-offset: 3px; box-shadow: 0 0 0 5px #111318; }
+.grid-bg {
+  background-color: #111318;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.label { font-family: var(--font-mono), monospace; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.sr-only-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }

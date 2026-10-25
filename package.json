@@ -1,0 +1,37 @@
+{
+  "name": "hirelens",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@google/genai": "^2.31.0",
+    "@supabase/supabase-js": "^2.118.0",
+    "crypto-js": "^4.2.0",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^0.468.0",
+    "mammoth": "^1.13.0",
+    "motion": "^12.0.0",
+    "next": "^15.1.0",
+    "pdfjs-dist": "^4.9.155",
+    "razorpay": "^2.9.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.12"
+  }
+}
