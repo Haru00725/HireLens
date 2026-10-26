@@ -11,7 +11,30 @@ describe("Pricing, State Machine & Payment Verification", () => {
       expect(paise).toBe(1900);
       expect(Number.isInteger(paise)).toBe(true);
     });
+
+    it("returns 0 paise when free scan promotion is active", async () => {
+      vi.stubEnv("FREE_SCAN_PROMO_ENABLED", "true");
+      vi.stubEnv("FREE_SCAN_PROMO_START_AT", new Date(Date.now() - 3600_000).toISOString());
+      vi.stubEnv("FREE_SCAN_PROMO_DURATION_HOURS", "48");
+
+      const { isFreeScanPromoActive, getScanPricePaise } = await import("@/lib/config");
+      expect(isFreeScanPromoActive()).toBe(true);
+      expect(getScanPricePaise()).toBe(0);
+
+      vi.unstubAllEnvs();
+    });
+
+    it("returns standard 1900 paise when promotion is disabled", async () => {
+      vi.stubEnv("FREE_SCAN_PROMO_ENABLED", "false");
+
+      const { isFreeScanPromoActive, getScanPricePaise } = await import("@/lib/config");
+      expect(isFreeScanPromoActive()).toBe(false);
+      expect(getScanPricePaise()).toBe(1900);
+
+      vi.unstubAllEnvs();
+    });
   });
+
 
   describe("Scan State Machine Transitions", () => {
     it("allows the standard happy path lifecycle", () => {

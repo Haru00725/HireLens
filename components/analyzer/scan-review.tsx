@@ -131,8 +131,13 @@ export function ScanReview({
           return;
         }
 
-        // If free checkout returned inactive (promo ended), continue to Razorpay checkout below
+        throw new Error(
+          freeData.message ||
+            freeData.error ||
+            "Unable to activate the launch free scan offer. Please try again or refresh the page."
+        );
       }
+
 
       // CASE B: Complete Bundle (₹39) or Scan Only post-promo (₹19) via Razorpay
       setStatusText("Preparing secure checkout...");

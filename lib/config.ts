@@ -69,8 +69,9 @@ export function isFreeScanPromoActive(): boolean {
   const enabled = process.env.FREE_SCAN_PROMO_ENABLED === "true";
   if (!enabled) return false;
 
-  const startAtStr = process.env.FREE_SCAN_PROMO_START_AT;
+  const startAtStr = process.env.FREE_SCAN_PROMO_START_AT || "2026-10-26T00:00:00Z";
   if (!startAtStr || !startAtStr.trim()) return false;
+
 
   const startAt = new Date(startAtStr.trim()).getTime();
   if (isNaN(startAt)) return false;
