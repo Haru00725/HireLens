@@ -36,6 +36,7 @@ export function HeroSection() {
               </motion.span>
             </motion.span>
           </span>
+          <span className="sr-only-text">— Free ATS Resume Builder &amp; AI Job Description Matcher</span>
         </h1>
         <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 1.2 }}
           className="mt-8 max-w-md text-lg text-ink/80">Your resume. The role. A clearer picture of your fit.</motion.p>

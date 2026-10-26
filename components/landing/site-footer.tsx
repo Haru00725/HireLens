@@ -21,8 +21,8 @@ export function SiteFooter() {
           <a className="block underline-offset-4 hover:underline" href="/#about">About</a>
           <a className="block underline-offset-4 hover:underline" href="/#how">How it works</a>
           <a className="block underline-offset-4 hover:underline" href="/#features">Features</a>
-          <Link className="block underline-offset-4 hover:underline" href="/analyze">Check my resume</Link>
-          <Link className="block underline-offset-4 hover:underline" href="/builder">Resume builder</Link>
+          <Link className="block underline-offset-4 hover:underline" href="/analyze">AI Resume Checker</Link>
+          <Link className="block underline-offset-4 hover:underline" href="/builder">Free ATS Resume Builder</Link>
         </nav>
 
         <nav aria-label="Support & Legal" className="space-y-2">
@@ -36,7 +36,7 @@ export function SiteFooter() {
           <div className="pt-3">
             <p className="label">Legal</p>
             <Link className="block underline-offset-4 hover:underline" href="/privacy">
-              Privacy
+              Privacy &amp; Data Architecture
             </Link>
           </div>
         </nav>

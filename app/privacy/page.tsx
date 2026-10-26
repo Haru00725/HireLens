@@ -3,16 +3,33 @@ import Link from "next/link";
 import { Navbar } from "@/components/navigation/navbar";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { ShieldCheck, Lock, Trash2, Clock, Sparkles, AlertCircle, ArrowLeft } from "lucide-react";
+import { JsonLd } from "@/components/seo/json-ld";
+import { getBreadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Privacy & Data Architecture — HireLens",
+  title: "Privacy & Data Architecture",
   description:
-    "Honest, transparent disclosure of how HireLens processes, retains, and secures your resume data.",
+    "Transparent disclosure of how HireLens handles resume data: in-memory parsing, zero permanent file storage, 45-minute draft TTLs, and zero AI training.",
+  alternates: {
+    canonical: "https://hirelens.delusive.studio/privacy",
+  },
+  openGraph: {
+    title: "Privacy & Data Architecture | HireLens",
+    description:
+      "Transparent disclosure of how HireLens handles resume data: in-memory parsing, zero permanent file storage, 45-minute draft TTLs, and zero AI training.",
+    url: "https://hirelens.delusive.studio/privacy",
+  },
 };
 
 export default function PrivacyPage() {
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Privacy & Data Architecture", path: "/privacy" },
+  ]);
+
   return (
     <>
+      <JsonLd schema={breadcrumbSchema} />
       <Navbar />
       <main className="min-h-screen bg-paper pb-24 pt-28">
         <article className="mx-auto w-full max-w-3xl px-6 md:px-10">

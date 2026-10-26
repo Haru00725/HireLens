@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { EASE } from "@/lib/tokens";
 
-const LINKS = [["About", "#about"], ["How it works", "#how"], ["Features", "#features"]];
+const LINKS = [["About", "/#about"], ["How it works", "/#how"], ["Features", "/#features"]];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
