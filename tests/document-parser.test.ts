@@ -67,5 +67,18 @@ describe("Document Parser & Text Validator", () => {
         parseDocument(fakeDocx, "resume.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
       ).rejects.toThrow("Invalid file signature");
     });
+
+    it("successfully parses a real PDF document buffer", async () => {
+      const fs = await import("fs");
+      const path = await import("path");
+      const pdfPath = path.join(process.cwd(), "public/HireLens_Resume_Analysis.pdf");
+      const buffer = fs.readFileSync(pdfPath);
+      const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
+
+      const result = await parseDocument(arrayBuffer, "HireLens_Resume_Analysis.pdf", "application/pdf");
+      expect(result.text).toBeDefined();
+      expect(result.text.length).toBeGreaterThan(100);
+      expect(result.pageCount).toBeGreaterThanOrEqual(1);
+    });
   });
 });

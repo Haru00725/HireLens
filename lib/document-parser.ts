@@ -58,16 +58,14 @@ export async function parseDocument(
 }
 
 async function parsePdf(buffer: ArrayBuffer): Promise<ParseResult> {
-  // Dynamic import to keep this module tree-shakeable
+  // In serverless / Node environments, importing the legacy worker module directly
+  // binds WorkerMessageHandler to globalThis.pdfjsWorker, enabling the fake worker
+  // in-memory without filesystem path resolution.
+  // @ts-expect-error - legacy worker bundle does not provide typescript type declarations
+  await import("pdfjs-dist/legacy/build/pdf.worker.mjs");
   const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
-  const path = await import("path");
-  const { pathToFileURL } = await import("url");
 
-  const workerPath = path.join(
-    process.cwd(),
-    "node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs"
-  );
-  pdfjsLib.GlobalWorkerOptions.workerSrc = pathToFileURL(workerPath).href;
+
 
   try {
     const doc = await pdfjsLib.getDocument({
